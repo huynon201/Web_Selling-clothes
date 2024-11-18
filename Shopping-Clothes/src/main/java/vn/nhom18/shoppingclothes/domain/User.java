@@ -17,7 +17,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -28,10 +31,12 @@ public class User {
     private long id;
 
     @NotNull
+    @NotEmpty(message = "Email không được để trống")
     @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
     @NotNull
+    @NotEmpty(message = "Họ tên không được để trống")
     @Size(min = 6, message = "Họ tên phải tối thiểu 6 ký tự")
     private String name;
 
@@ -42,12 +47,18 @@ public class User {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss a", timezone = "GMT+7")
     private LocalDateTime createDate;
 
+    @NotNull(message = "Vai trò không được để trống")
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
     private String avatar;
+
+    @NotEmpty(message = "Địa chỉ không được để trống")
     private String address;
+
+    @NotEmpty(message = "Số điện thoại không được để trống")
+    @Pattern(regexp = "^\\d{10,11}$", message = "Số điện thoại không hợp lệ")
     private String phone;
 
     public long getId() {
@@ -118,6 +129,7 @@ public class User {
     public void handleBeforCreate() {
         this.setCreateDate(LocalDateTime.now());
     }
+
     public String getPhone() {
         return phone;
     }
@@ -125,4 +137,12 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", email=" + email + ", name=" + name + ", password=" + password + ", createDate="
+                + createDate + ", role=" + role + ", avatar=" + avatar + ", address=" + address + ", phone=" + phone
+                + "]";
+    }
+
 }

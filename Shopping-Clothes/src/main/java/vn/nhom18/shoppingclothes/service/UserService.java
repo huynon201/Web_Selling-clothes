@@ -39,4 +39,24 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
+    }
+    public void handleUpdateUser(User user) {
+        // Lấy vai trò từ cơ sở dữ liệu theo tên
+        Role role = roleRepository.findByName(user.getRole().getName());
+        if (role == null) {
+            throw new IllegalArgumentException("Vai trò không hợp lệ: " + user.getRole().getName());
+        }
+    
+        // Gán vai trò cho người dùng
+        user.setRole(role);
+    
+        // Lưu người dùng đã cập nhật vào cơ sở dữ liệu
+        userRepository.save(user);
+    }
+    public Role getRoleById(long id) {
+        return roleRepository.findById(id).orElse(null);
+    }
+    
 }

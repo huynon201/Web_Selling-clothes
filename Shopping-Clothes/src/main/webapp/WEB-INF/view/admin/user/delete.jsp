@@ -61,10 +61,10 @@
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
-                                            <h1>Submit delete a user ID = ${id}</h1>
+                                            <h1>Ấn xóa để xóa người dùng có id = ${id}</h1>
                                             <hr>
                                             <div class="alert alert-danger" role="alert">
-                                                Are you sure delete this user?
+                                                Bạn có chắc chắn xóa người dùng này không?
                                             </div>
                                             <form:form method="POST" action="/admin/user/delete"
                                                 modelAttribute="newUser">
@@ -73,7 +73,10 @@
                                                     <form:input type="text" class="form-control" path="id"
                                                         value="${id}" />
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                                <button type="submit" class="btn btn-primary">Xóa</button>
+                                                <button class="btn btn-primary"><a class="text-white"
+                                                        href="/admin/user">Trở
+                                                        về</a></button>
                                             </form:form>
                                         </div>
                                     </div>
