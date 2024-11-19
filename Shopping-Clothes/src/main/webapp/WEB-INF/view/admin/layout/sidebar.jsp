@@ -47,17 +47,11 @@
                 </a>
             </li><!-- End Contact Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
-                    <i class="bi bi-card-list"></i>
-                    <span>Đăng ký</span>
-                </a>
-            </li><!-- End Register Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
+                <a class="nav-link collapsed" href="/login">
                     <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Đăng nhập</span>
+                    <span>Đăng xuất</span>
                 </a>
             </li><!-- End Login Page Nav -->
         </ul>
