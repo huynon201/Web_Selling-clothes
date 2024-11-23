@@ -1,9 +1,14 @@
 package vn.nhom18.shoppingclothes.service;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+=======
+import java.util.List;
+
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
 import org.springframework.stereotype.Service;
 
 import vn.nhom18.shoppingclothes.domain.Role;
@@ -15,12 +20,19 @@ import vn.nhom18.shoppingclothes.repository.UserRepository;
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+<<<<<<< HEAD
     private final PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+=======
+
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
     }
 
     public List<User> handlegetAllUser() {
@@ -43,6 +55,7 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
+<<<<<<< HEAD
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
@@ -109,4 +122,6 @@ public class UserService {
 
   
 
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
 }

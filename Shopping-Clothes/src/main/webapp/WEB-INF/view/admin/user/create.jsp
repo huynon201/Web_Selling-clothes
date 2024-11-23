@@ -99,6 +99,10 @@
                                                         path="password" />
                                                     ${errorPassword}
                                                 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">FullName:</label>
                                                     <form:input type="text"

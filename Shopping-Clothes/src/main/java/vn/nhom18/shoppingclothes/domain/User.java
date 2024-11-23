@@ -6,8 +6,11 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
+<<<<<<< HEAD
 import org.springframework.web.multipart.MultipartFile;
 
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -18,12 +21,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+<<<<<<< HEAD
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+=======
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -34,12 +42,18 @@ public class User {
     private long id;
 
     @NotNull
+<<<<<<< HEAD
     @NotEmpty(message = "Email không được để trống")
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
     @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
     @NotNull
+<<<<<<< HEAD
     @NotEmpty(message = "Họ tên không được để trống")
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
     @Size(min = 6, message = "Họ tên phải tối thiểu 6 ký tự")
     private String name;
 
@@ -50,12 +64,16 @@ public class User {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss a", timezone = "GMT+7")
     private LocalDateTime createDate;
 
+<<<<<<< HEAD
     @NotNull(message = "Vai trò không được để trống")
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
     private String avatar;
+<<<<<<< HEAD
 
     @NotEmpty(message = "Địa chỉ không được để trống")
     private String address;
@@ -66,6 +84,11 @@ public class User {
 
 
 
+=======
+    private String address;
+    private String phone;
+
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
     public long getId() {
         return id;
     }
@@ -134,7 +157,10 @@ public class User {
     public void handleBeforCreate() {
         this.setCreateDate(LocalDateTime.now());
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
     public String getPhone() {
         return phone;
     }
@@ -142,6 +168,7 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+<<<<<<< HEAD
 
     @Override
     public String toString() {
@@ -150,4 +177,6 @@ public class User {
                 + "]";
     }
 
+=======
+>>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
 }
