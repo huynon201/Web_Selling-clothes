@@ -42,4 +42,9 @@ public class CategoryService {
     public void save(Category category) {
         categoryRepository.save(category);
     }
+
+    public boolean existsByName(String name) {
+        return categoryRepository.existsByName(name); // Giả sử bạn có phương thức tìm kiếm theo tên trong repository
+    }
+    
 }

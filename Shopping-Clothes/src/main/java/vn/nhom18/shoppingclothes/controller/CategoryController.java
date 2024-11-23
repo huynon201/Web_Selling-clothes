@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import vn.nhom18.shoppingclothes.domain.Category;
 import vn.nhom18.shoppingclothes.service.CategoryService;
@@ -74,4 +75,34 @@ public class CategoryController {
 
         return "redirect:/admin/category"; // Chuyển hướng về danh sách danh mục sau khi sửa
     }
+
+    @GetMapping("/admin/category/create")
+    public String showCreateForm(Model model) {
+        // Trả về trang hiển thị biểu mẫu
+        return "admin/category/create"; // Đảm bảo tên này khớp với tên JSP của bạn
+    }
+
+    @PostMapping("/admin/category/create")
+    public String createCategory(@RequestParam String name, @RequestParam String description, Model model) {
+        // Kiểm tra nếu trường tên danh mục trống
+        if (name == null || name.trim().isEmpty()) {
+            model.addAttribute("nameError", "Tên danh mục không được để trống!");
+            return "admin/category/create"; // Quay lại trang tạo danh mục với thông báo lỗi
+        }
+
+        // Kiểm tra nếu danh mục đã tồn tại
+        if (categoryService.existsByName(name)) {
+            model.addAttribute("error", "Tên danh mục đã tồn tại. Vui lòng chọn tên khác.");
+            return "admin/category/create";
+        }
+
+        // Nếu tên danh mục hợp lệ, tạo danh mục mới
+        Category category = new Category();
+        category.setName(name);
+        category.setDescription(description);
+        categoryService.save(category);
+
+        return "redirect:/admin/category"; // Chuyển hướng về danh sách danh mục sau khi thêm thành công
+    }
+
 }

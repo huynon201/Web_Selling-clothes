@@ -10,6 +10,7 @@
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Quản lý</span><i
@@ -36,6 +37,11 @@
                             <i class="bi bi-circle"></i><span>Quản lý danh mục sản phẩm</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/discount">
+                            <i class="bi bi-circle"></i><span>Quản lý mã giảm giá</span>
+                        </a>
+                    </li>
                 </ul>
             </li><!-- End Tables Nav -->
 
@@ -46,7 +52,6 @@
                     <span>Liên hệ</span>
                 </a>
             </li><!-- End Contact Page Nav -->
-
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/login">

@@ -100,4 +100,13 @@ public class UserService {
         return null; // Nếu email không tồn tại hoặc mật khẩu sai
     }
 
+    public boolean existsByEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false; // Email trống không tồn tại
+        }
+        return userRepository.existsByEmail(email);
+    }
+
+  
+
 }

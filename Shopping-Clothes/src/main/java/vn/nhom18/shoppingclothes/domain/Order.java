@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
+@Entity
 @Table(name = "orders")
 public class Order {
 
@@ -34,6 +36,10 @@ public class Order {
 
     @Enumerated(EnumType.STRING) // Lưu chuỗi giá trị của enum
     private OrderStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "discount_id")
+    private Discount discount; // Liên kết với bảng Discount
 }
 
 

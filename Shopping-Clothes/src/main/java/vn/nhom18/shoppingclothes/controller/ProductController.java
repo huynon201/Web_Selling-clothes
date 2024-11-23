@@ -50,9 +50,21 @@ public class ProductController {
             BindingResult result,
             Model model) {
 
-        // Kiểm tra xem có lỗi trong binding không
+        // Kiểm tra nếu có lỗi trong binding
         if (result.hasErrors()) {
             model.addAttribute("categories", productService.getAllCategories());
+
+            // Lấy thông báo lỗi cho từng trường
+            if (result.hasFieldErrors("name")) {
+                model.addAttribute("nameError", "Tên sản phẩm không được để trống.");
+            }
+            if (result.hasFieldErrors("price")) {
+                model.addAttribute("priceError", "Giá sản phẩm phải lớn hơn 0.");
+            }
+            if (result.hasFieldErrors("quantity")) {
+                model.addAttribute("quantityError", "Số lượng sản phẩm phải lớn hơn 0.");
+            }
+
             return "admin/product/create"; // Trả lại trang tạo nếu có lỗi
         }
 

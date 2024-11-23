@@ -42,23 +42,23 @@
             <jsp:include page="/WEB-INF/view/user/layout/header.jsp" />
             <!-- Slider Section -->
             <div class="container py-5">
-                <h2 class="text-center mb-4">Ảnh nổi bật</h2>
+                <h2 class="text-center text-black mb-2">Ảnh nổi bật</h2>
                 <div class="owl-carousel owl-theme">
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/images/products/1731964903879-anhpng.jpg" class="img-fluid"
-                            alt="Ảnh 1">
+                        <img src="${pageContext.request.contextPath}/images/products/1731964903879-anhpng.jpg"
+                            class="img-fluid" alt="Ảnh 1">
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/images/products/1731964967864-somi f2.jpg" class="img-fluid"
-                            alt="Ảnh 2">
+                        <img src="${pageContext.request.contextPath}/images/products/1731964967864-somi f2.jpg"
+                            class="img-fluid" alt="Ảnh 2">
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/images/products/1731964988106-somi e1.jpg" class="img-fluid"
-                            alt="Ảnh 3">
+                        <img src="${pageContext.request.contextPath}/images/products/1731964988106-somi e1.jpg"
+                            class="img-fluid" alt="Ảnh 3">
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/images/products/1731964959898-sp1.jpg" class="img-fluid"
-                            alt="Ảnh 4">
+                        <img src="${pageContext.request.contextPath}/images/products/1731964959898-sp1.jpg"
+                            class="img-fluid" alt="Ảnh 4">
                     </div>
                 </div>
             </div>
@@ -116,9 +116,9 @@
             <script src="${pageContext.request.contextPath}/lib-user/lightbox/js/lightbox.min.js"></script>
             <script src="${pageContext.request.contextPath}/lib-user/owlcarousel/owl.carousel.min.js"></script>
             <script src="${pageContext.request.contextPath}/js-user/main.js"></script>
-        
+
             <script>
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $(".owl-carousel").owlCarousel({
                         loop: true,
                         margin: 10,

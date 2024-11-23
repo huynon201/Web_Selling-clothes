@@ -12,15 +12,11 @@
       <div class="d-flex justify-content-between">
         <div class="top-info ps-2">
           <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i>
-            <a href="#" class="text-white">123 Street, New York</a></small>
+            <a href="#" class="text-white">132 Nguyên Xá, Cầu Diễn</a></small>
           <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#"
-              class="text-white">Email@Example.com</a></small>
+              class="text-white">doanhvipnvn@gmail.com</a></small>
         </div>
-        <div class="top-link pe-2">
-          <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
-          <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
-          <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
-        </div>
+        
       </div>
     </div>
     <div class="container px-0">
@@ -38,7 +34,7 @@
         <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
           <div class="navbar-nav mx-auto">
             <a href="homepage" class="nav-item nav-link">Trang chủ</a>
-            <a href="shop.html" class="nav-item nav-link">Cửa hàng</a>
+            <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh Mục Sản Phẩm</a>
               <div class="dropdown-menu ms-4 bg-secondary rounded-0">
@@ -50,7 +46,7 @@
               </div>
             </div>
             <a href="shop.html" class="nav-item nav-link">Giỏ hàng</a>
-            <a href="shop.html" class="nav-item nav-link">Thanh toán</a>
+            <a href="shop.html" class="nav-item nav-link">Khuyến mãi</a>
             <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
           </div>
           <div class="d-flex m-3 me-0">
