@@ -8,7 +8,7 @@
             <head>
                 <meta charset="utf-8">
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-                <title>Update User - NiceAdmin Bootstrap Template</title>
+                <title>Update user</title>
                 <link href="/css/bootstrap.min.css" rel="stylesheet">
                 <link href="/css/boxicons.min.css" rel="stylesheet">
                 <link href="/css/style.css" rel="stylesheet">
@@ -32,12 +32,12 @@
 
                 <main id="main" class="main">
                     <div class="pagetitle">
-                        <h1>Update User</h1>
+                        <h1>Cập nhật người dùng</h1>
                         <nav>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="/admin/user">User Management</a></li>
-                                <li class="breadcrumb-item active">Update User</li>
+                                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="/admin/user">Quản lý người dùng</a></li>
+                                <li class="breadcrumb-item active">Cập nhật người dùng</li>
                             </ol>
                         </nav>
                     </div>
@@ -48,90 +48,55 @@
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-md-8 col-12 mx-auto">
-                                            <h1>Update User Information</h1>
+                                            <h1>Cập nhật thông tin người dùng</h1>
                                             <hr>
 
                                             <!-- Form Update User -->
-                                            <form:form method="POST" action="/admin/user/update/${user.id}"
-                                                enctype="multipart/form-data" modelAttribute="user" class="row">
+                                            <form:form method="post" action="/admin/user/update"
+                                                modelAttribute="newUser" enctype="multipart/form-data">
 
-                                                <!-- Email (read-only) -->
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Email address:</label>
-                                                    <form:input type="email"
-                                                        class="form-control ${not empty user.email ? '' : 'is-invalid'}"
-                                                        path="email" readonly="true" />
-                                                    <form:errors path="email" cssClass="invalid-feedback" />
+                                                <div class="mb-3" style="display: none;">
+                                                    <label class="form-label">Id:</label>
+                                                    <form:input type="text" class="form-control" path="id" />
                                                 </div>
 
-                                                <!-- Password -->
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Password:</label>
-                                                    <!-- Hiển thị mật khẩu cũ dưới dạng dấu * -->
-                                                    <form:input type="password"
-                                                        class="form-control ${not empty user.password ? '' : 'is-invalid'}"
-                                                        path="password" readonly="true"
-                                                        value="${user.password != null ? '********' : ''}" />
-                                                    <form:errors path="password" cssClass="invalid-feedback" />
+                                                <div class="mb-3">
+                                                    <label class="form-label">Email:</label>
+                                                    <form:input type="email" class="form-control" path="email"
+                                                        disabled="true" />
                                                 </div>
 
-                                                <!-- Full Name -->
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Full Name:</label>
-                                                    <form:input type="text"
-                                                        class="form-control ${not empty user.name ? '' : 'is-invalid'}"
-                                                        path="name" />
-                                                    <form:errors path="name" cssClass="invalid-feedback" />
+                                                <div class="mb-3">
+                                                    <label class="form-label">Số điện thoại:</label>
+                                                    <form:input type="text" class="form-control" path="phone" />
                                                 </div>
-
-                                                <!-- Phone Number -->
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Phone Number:</label>
-                                                    <form:input type="text"
-                                                        class="form-control ${not empty user.phone ? '' : 'is-invalid'}"
-                                                        path="phone" />
-                                                    <form:errors path="phone" cssClass="invalid-feedback" />
+                                                <div class="mb-3">
+                                                    <label class="form-label">Họ và tên:</label>
+                                                    <form:input type="text" class="form-control" path="name" />
                                                 </div>
-
-                                                <!-- Address -->
-                                                <div class="mb-3 col-12">
-                                                    <label class="form-label">Address:</label>
-                                                    <form:input type="text"
-                                                        class="form-control ${not empty user.address ? '' : 'is-invalid'}"
-                                                        path="address" />
-                                                    <form:errors path="address" cssClass="invalid-feedback" />
+                                                <div class="mb-3">
+                                                    <label class="form-label">Địa chỉ:</label>
+                                                    <form:input type="text" class="form-control" path="address" />
                                                 </div>
-
-                                                <!-- Role -->
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Role:</label>
-                                                    <form:select
-                                                        class="form-select ${not empty user.role.name ? '' : 'is-invalid'}"
-                                                        path="role.name">
-                                                        <form:option value="ADMIN">ADMIN</form:option>
-                                                        <form:option value="USER">USER</form:option>
-                                                    </form:select>
-                                                    <form:errors path="role.name" cssClass="invalid-feedback" />
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label">Vai trò:</label>
+                                                        <form:select class="form-select" path="role.name">
+                                                            <form:option value="ADMIN">ADMIN</form:option>
+                                                            <form:option value="USER">USER</form:option>
+                                                        </form:select>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="avatarFile" class="form-label">Ảnh đại diện:</label>
+                                                        <input class="form-control" type="file" id="avatarFile"
+                                                            accept=".png, .jpg, .jpeg" name="fileName" />
+                                                    </div>
                                                 </div>
-
-                                                <!-- Avatar -->
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <label for="avatarFile" class="form-label">Avatar:</label>
-                                                    <input class="form-control" type="file" id="avatarFile"
-                                                        accept=".png, .jpg, .jpeg" name="avatarFile" />
+                                                <div class="col-12 md-5">
+                                                    <img style="max-height: 250px; display: none; margin-top: 10px;"
+                                                        alt="avatar preview" id="avatarPreview" />
                                                 </div>
-
-                                                <!-- Avatar Preview -->
-                                                <div class="col-12 col-md-6">
-                                                    <img id="avatarPreview" src="/images/avatar/${user.avatar}"
-                                                        alt="Avatar Preview"
-                                                        style="max-height: 150px; max-width: 150px; display: block;" />
-                                                </div>
-
-                                                <!-- Submit Button -->
-                                                <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Update</button>
-                                                </div>
+                                                <button type="submit" class="btn btn-warning mt-2">Cập nhật</button>
                                             </form:form>
                                         </div>
                                     </div>

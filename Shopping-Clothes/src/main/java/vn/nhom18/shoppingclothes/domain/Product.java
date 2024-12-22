@@ -1,9 +1,13 @@
 package vn.nhom18.shoppingclothes.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,10 +15,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -45,10 +50,6 @@ public class Product {
     @NotEmpty(message = "Mô tả ngắn không được để trống")
     private String shortDesc;
 
-    @NotNull
-    @Min(value = 1, message = "Số lượng phải lớn hơn hoặc bằng 1")
-    private long quantity;
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss a", timezone = "GMT+7")
     private LocalDateTime createDate;
 
@@ -56,6 +57,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductDetail> productDetails = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -105,14 +109,6 @@ public class Product {
         this.shortDesc = shortDesc;
     }
 
-    public long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
-    }
-
     public LocalDateTime getCreateDate() {
         return createDate;
     }
@@ -132,6 +128,53 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<ProductDetail> getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(List<ProductDetail> productDetails) {
+        this.productDetails = productDetails;
+    }
+
+    public List<Size> getSizes() {
+        return productDetails.stream()
+                .map(ProductDetail::getSize)
+                .collect(Collectors.toList());
+    }
+
+    public List<Color> getColors() {
+        return productDetails.stream()
+                .map(ProductDetail::getColor)
+                .collect(Collectors.toList());
+    }
+
+    public long getTotalQuantity() {
+        return productDetails.stream()
+                .mapToLong(ProductDetail::getQuantity)
+                .sum();
+    }
+
+    public List<Size> getUniqueSizes() {
+        return productDetails.stream()
+                .map(ProductDetail::getSize)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<Color> getUniqueColors() {
+        return productDetails.stream()
+                .map(ProductDetail::getColor)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public long getQuantityBySizeAndColor(Size size, Color color) {
+        return productDetails.stream()
+                .filter(detail -> detail.getSize().equals(size) && detail.getColor().equals(color))
+                .mapToLong(ProductDetail::getQuantity)
+                .sum();
     }
 
 }

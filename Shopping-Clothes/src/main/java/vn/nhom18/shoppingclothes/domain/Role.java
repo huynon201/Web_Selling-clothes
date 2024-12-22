@@ -35,13 +35,10 @@ public class Role {
         this.name = name;
     }
 
-<<<<<<< HEAD
     @Override
     public String toString() {
         return "Role [id=" + id + ", name=" + name + ", user=" + user + "]";
     }
 
     
-=======
->>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
 }

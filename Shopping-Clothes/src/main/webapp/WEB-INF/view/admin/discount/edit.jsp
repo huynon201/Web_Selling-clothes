@@ -97,6 +97,7 @@
                         <!-- Form chỉnh sửa mã giảm giá -->
                         <form:form method="POST" action="/admin/discount/edit" modelAttribute="discount"
                             class="bg-light p-4 border rounded shadow">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <form:input path="id" type="hidden" />
                             <div class="mb-3">
                                 <label for="code" class="form-label">Mã Giảm Giá</label>

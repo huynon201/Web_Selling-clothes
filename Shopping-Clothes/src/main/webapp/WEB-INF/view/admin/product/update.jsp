@@ -45,6 +45,7 @@
                     <div class="card-body">
                         <form id="updateProductForm" action="/admin/product/update/${product.id}" method="post"
                             enctype="multipart/form-data">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <div class="form-group">
                                 <label for="name">Tên sản phẩm</label>
                                 <input type="text" name="name" id="name" class="form-control" value="${product.name}"
@@ -57,13 +58,6 @@
                                 <input type="number" name="price" id="price" class="form-control"
                                     value="${product.price}" required>
                                 <div id="priceError" class="text-danger mt-2"></div>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <label for="quantity">Số lượng</label>
-                                <input type="number" name="quantity" id="quantity" class="form-control"
-                                    value="${product.quantity}" required>
-                                <div id="quantityError" class="text-danger mt-2"></div>
                             </div>
 
                             <div class="form-group mt-3">
@@ -118,7 +112,6 @@
                     const form = document.getElementById("updateProductForm");
                     const nameField = document.getElementById("name");
                     const priceField = document.getElementById("price");
-                    const quantityField = document.getElementById("quantity");
                     const shortDescField = document.getElementById("shortDesc");
                     const detailDescField = document.getElementById("detailDesc");
                     const categoryField = document.getElementById("category");
@@ -126,7 +119,6 @@
                     // Kiểm tra và xóa thông báo lỗi khi nhập đúng
                     nameField.addEventListener("input", () => validateField(nameField, "nameError", "Tên sản phẩm không được để trống."));
                     priceField.addEventListener("input", () => validateFieldWithCondition(priceField, "priceError", "Giá sản phẩm phải lớn hơn 0.", (value) => value > 0));
-                    quantityField.addEventListener("input", () => validateFieldWithCondition(quantityField, "quantityError", "Số lượng phải lớn hơn hoặc bằng 1.", (value) => value >= 1));
                     shortDescField.addEventListener("input", () => validateField(shortDescField, "shortDescError", "Mô tả ngắn không được để trống."));
                     detailDescField.addEventListener("input", () => validateField(detailDescField, "detailDescError", "Mô tả chi tiết không được để trống."));
 
@@ -180,12 +172,6 @@
                         const priceValue = parseFloat(priceField.value);
                         if (isNaN(priceValue) || priceValue <= 0) {
                             document.getElementById("priceError").innerText = "Giá sản phẩm phải lớn hơn 0.";
-                            valid = false;
-                        }
-
-                        const quantityValue = parseFloat(quantityField.value);
-                        if (isNaN(quantityValue) || quantityValue < 1) {
-                            document.getElementById("quantityError").innerText = "Số lượng phải lớn hơn hoặc bằng 1.";
                             valid = false;
                         }
 

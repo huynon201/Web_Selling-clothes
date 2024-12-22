@@ -22,15 +22,35 @@
 
             <!-- Vendor CSS Files -->
             <link href="/css/bootstrap.min.css" rel="stylesheet">
-            <!-- Option 1: Include in HTML -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
             <link href="/css/boxicons.min.css" rel="stylesheet">
             <link href="/css/quill.snow.css" rel="stylesheet">
             <link href="/css/quill.bubble.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
             <link href="/css/style-data.css" rel="stylesheet">
-            <!-- Template Main CSS File -->
             <link href="/css/style.css" rel="stylesheet">
+            <style>
+                /* Thêm hiệu ứng chuyển động cho icon tìm kiếm */
+                button i {
+                    transition: transform 0.3s ease;
+                    /* Thêm hiệu ứng cho icon */
+                }
+
+                button:hover i {
+                    transform: scale(1.2);
+                    /* Tăng kích thước của icon khi hover */
+                }
+
+                /* Thêm hiệu ứng cho icon "Thêm sản phẩm" */
+                a i {
+                    transition: transform 0.3s ease;
+                }
+
+                a:hover i {
+                    transform: scale(1.2);
+                    /* Tăng kích thước của icon khi hover */
+                }
+            </style>
         </head>
 
         <body>
@@ -48,6 +68,7 @@
                         </ol>
                     </nav>
                 </div><!-- End Page Title -->
+
                 <section class="section">
                     <div class="row">
                         <div class="col-lg-12">
@@ -55,16 +76,32 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <h5 class="card-title">Danh sách sản phẩm</h5>
-                                        <a class="btn btn-primary m-3 mb-2" href="/admin/product/create">Thêm sản
-                                            phẩm</a>
+                                        <div class="d-flex align-items-center">
+                                            <!-- Form tìm kiếm -->
+                                            <form action="/admin/product" method="get" class="d-flex">
+                                                <input type="text" class="form-control form-control-sm me-2"
+                                                    name="search" placeholder="Tìm kiếm sản phẩm" value="${search}">
+                                                <button class="btn btn-primary btn-sm" type="submit">
+                                                    <i class="bi bi-search"></i>
+                                                    <!-- Icon tìm kiếm từ Bootstrap Icons -->
+                                                </button>
+                                            </form>
+                                            <!-- Nút Thêm sản phẩm -->
+                                            <a class="btn btn-primary btn-sm ms-2" href="/admin/product/create">
+                                                <i class="bi bi-plus-circle"></i> Thêm sản phẩm
+                                            </a>
+                                        </div>
                                     </div>
+
+
+
                                     <!-- Table with stripped rows -->
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th class="col-1">ID</th>
-                                                <th class="col-2">Name</th>
-                                                <th class="col-2">Price</th>
+                                                <th class="col-2">Tên</th>
+                                                <th class="col-2">Giá (VND)</th>
                                                 <th class="col-2">Ngày tạo</th>
                                                 <th class="col-3 ps-5">Chức năng</th>
                                             </tr>
@@ -81,24 +118,36 @@
                                                             class="btn btn-info btn-sm">Xem</a>
                                                         <a href="/admin/product/update/${product.id}"
                                                             class="btn btn-warning btn-sm">Sửa</a>
-                                                        <!-- Nút xóa có sự kiện onclick xác nhận -->
                                                         <a href="javascript:void(0);"
                                                             onclick="confirmDelete('/admin/product/delete/${product.id}')"
                                                             class="btn btn-danger btn-sm">Xóa</a>
-
                                                     </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>
                                     <!-- End Table with stripped rows -->
+
+                                    <!-- Pagination Controls -->
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span>Trang hiện tại: ${currentPage + 1} / ${totalPages}</span>
+                                        </div>
+                                        <div>
+                                            <!-- Pagination Links -->
+                                            <c:forEach var="i" begin="0" end="${totalPages - 1}">
+                                                <a class="btn btn-sm btn-outline-primary ${i == currentPage ? 'active' : ''}"
+                                                    href="/admin/product?page=${i}">
+                                                    ${i + 1}
+                                                </a>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </section>
-
             </main><!-- End #main -->
 
             <jsp:include page="../layout/footer.jsp" />
@@ -106,7 +155,6 @@
             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                     class="bi bi-arrow-up-short"></i></a>
 
-            <!-- Vendor JS Files -->
             <script src="/js/apexcharts.min.js"></script>
             <script src="/js/bootstrap.bundle.min.js"></script>
             <script src="/js/chart.umd.js"></script>
@@ -116,14 +164,12 @@
             <script src="/js/tinymce.min.js"></script>
             <script src="/js/validate.js"></script>
 
-            <!-- Template Main JS File -->
             <script src="/js/main.js"></script>
 
             <!-- JavaScript xác nhận xóa -->
             <script>
                 function confirmDelete(url) {
                     if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
-                        // Nếu người dùng chọn OK, chuyển hướng tới URL xóa
                         window.location.href = url;
                     }
                 }

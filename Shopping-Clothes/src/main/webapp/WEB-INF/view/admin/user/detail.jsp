@@ -55,11 +55,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-<<<<<<< HEAD
                                         <h5 class="card-title">Chi tiết người dùng</h5>
-=======
-                                        <h5 class="card-title">Danh sách người dùng</h5>
->>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
                                     </div>
                                     <!-- Table with stripped rows -->
                                     <table class="table">
@@ -70,51 +66,30 @@
                                                 <th class="col-1">Email</th>
                                                 <th class="col-2">Họ tên</th>
                                                 <th class="col-2">Địa chỉ</th>
-<<<<<<< HEAD
                                                 <th class="col-1">Vai trò</th>
                                                 <th class="col-2">Số điện thoại</th>
-=======
-                                                <th class="col-2">Vai trò</th>
-                                                <th class="col-1">Số điện thoại</th>
->>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
                                                 <th class="col-2">Ngày tạo</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-<<<<<<< HEAD
                                             <tr>
                                                 <td>${newUser.id}</td>
                                                 <td>
                                                     <div class="card me-4" style="width: 40%;">
-                                                        <img class="card-img-top" src="${newUser.avatar}"
+                                                        <img class="card-img-top" src="/images/avatar/${user.avatar}"
                                                             alt="User avatar">
                                                     </div>
                                                 </td>
-                                                <td>${newUser.email}</td>
-                                                <td>${newUser.name}</td>
-                                                <td>${newUser.address}</td>
-                                                <td>${newUser.role.name}</td>
-                                                <td>${newUser.phone}</td>
-                                                <td>${newUser.createDate}</td>
+                                                <td>${user.email}</td>
+                                                <td>${user.name}</td>
+                                                <td>${user.address}</td>
+                                                <td>${user.role.name}</td>
+                                                <td>${user.phone}</td>
+                                                <td>${user.createDate}</td>
                                             </tr>
                                         </tbody>
 
-=======
-                                            <c:forEach var="user" items="${users}">
-                                                <tr>
-                                                    <td>${user.id}</td>
-                                                    <td>${user.avatar}</td>
-                                                    <td>${user.email}</td>
-                                                    <td>${user.name}</td>
-                                                    <td>${user.address}</td>
-                                                    <td>${user.role.name}</td>
-                                                    <td>${user.phone}</td>
-                                                    <td>${user.createDate}</td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
->>>>>>> db1513353576fc680b5d2ead4b1d76814edb230f
                                     </table>
                                     <a class="btn btn-primary m-3 mb-2" href="/admin/user">Trở về</a>
                                     <!-- End Table with stripped rows -->

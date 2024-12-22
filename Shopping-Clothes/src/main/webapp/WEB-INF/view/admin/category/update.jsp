@@ -124,6 +124,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title mb-4">Thông tin danh mục</h5>
                                         <form action="/admin/category/update/${category.id}" method="post">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                             <div class="form-group">
                                                 <label for="name">Tên danh mục</label>
                                                 <input type="text" class="form-control" id="name" name="name"

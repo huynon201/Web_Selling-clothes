@@ -30,6 +30,32 @@
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
             <link href="/css/style-data.css" rel="stylesheet">
             <link href="/css/style.css" rel="stylesheet">
+
+            <!-- Custom Styles -->
+            <style>
+                .search-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .search-input {
+                    width: 300px;
+                }
+
+                .btn-search {
+                    background-color: #007bff;
+                    color: white;
+                }
+
+                .btn-search:hover {
+                    background-color: #0056b3;
+                }
+
+                .btn-primary {
+                    margin-left: 10px;
+                }
+            </style>
         </head>
 
         <body>
@@ -64,11 +90,21 @@
                                         </div>
                                     </c:if>
 
-
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h5 class="card-title">Danh sách danh mục sản phẩm</h5>
-                                        <a class="btn btn-primary m-3 mb-2" href="/admin/category/create">Thêm danh mục
-                                            mới</a>
+                                        <div class="search-container">
+                                            <form action="/admin/category" method="get"
+                                                class="d-flex align-items-center">
+                                                <input type="text" name="search" value="${search}"
+                                                    class="form-control search-input"
+                                                    placeholder="Tìm kiếm danh mục..." />
+                                                <button type="submit" class="btn btn-search ms-2">
+                                                    <i class="bi bi-search"></i>
+                                                </button>
+                                            </form>
+                                            <a class="btn btn-primary" href="/admin/category/create">Thêm danh mục
+                                                mới</a>
+                                        </div>
                                     </div>
 
                                     <!-- Table with stripped rows -->
@@ -99,6 +135,22 @@
                                         </tbody>
                                     </table>
                                     <!-- End Table with stripped rows -->
+
+                                    <!-- Pagination Controls -->
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span>Trang hiện tại: ${currentPage + 1} / ${totalPages}</span>
+                                        </div>
+                                        <div>
+                                            <!-- Pagination Links -->
+                                            <c:forEach var="i" begin="0" end="${totalPages - 1}">
+                                                <a class="btn btn-sm btn-outline-primary ${i == currentPage ? 'active' : ''}"
+                                                    href="/admin/category?page=${i}">
+                                                    ${i + 1}
+                                                </a>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +173,7 @@
                     setTimeout(() => {
                         errorAlert.classList.remove("show");
                         errorAlert.classList.add("hide");
-                    }, 2000); // 2000ms =  2giây
+                    }, 2000); // 2000ms = 2giây
                 }
             </script>
 

@@ -22,9 +22,6 @@
             <link href="/css/bootstrap.min.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
             <link href="/css/boxicons.min.css" rel="stylesheet">
-            <link href="/css/quill.snow.css" rel="stylesheet">
-            <link href="/css/quill.bubble.css" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
             <link href="/css/style-data.css" rel="stylesheet">
             <link href="/css/style.css" rel="stylesheet">
 
@@ -43,10 +40,6 @@
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 }
 
-                .table {
-                    margin-top: 20px;
-                }
-
                 .table thead th {
                     background-color: #343a40;
                     color: white;
@@ -56,16 +49,17 @@
                     margin-bottom: 20px;
                 }
 
-                .btn-action a {
-                    margin-right: 5px;
-                }
-
                 .text-muted {
                     font-size: 0.9rem;
                 }
 
                 h1 {
                     font-weight: 700;
+                }
+
+                .pagination {
+                    margin-top: 20px;
+                    justify-content: center;
                 }
 
                 .action-buttons a {
@@ -145,22 +139,24 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Phân trang -->
+                    <nav>
+                        <ul class="pagination">
+                            <c:forEach var="i" begin="0" end="${totalPages - 1}">
+                                <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                    <a class="page-link" href="/admin/discount/manage?page=${i}">${i + 1}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </nav>
                 </div>
             </main>
 
             <!-- Footer -->
             <jsp:include page="../layout/footer.jsp" />
 
-            <script src="/js/apexcharts.min.js"></script>
             <script src="/js/bootstrap.bundle.min.js"></script>
-            <script src="/js/chart.umd.js"></script>
-            <script src="/js/echarts.min.js"></script>
-            <script src="/js/quill.js"></script>
-            <script src="/js/simple-datatables.js"></script>
-            <script src="/js/tinymce.min.js"></script>
-            <script src="/js/validate.js"></script>
-
-            <!-- Template Main JS File -->
             <script src="/js/main.js"></script>
         </body>
 

@@ -195,4 +195,73 @@
     });
   });
 
+
+
 })(jQuery);
+$('.quantity1 button').on('click', function () {
+  let change = 0;
+  var button = $(this);
+  var oldValue = button.parent().parent().find('input').val();
+  var stockQuantity = parseInt(button.parent().parent().find('input').data('cart-detail-store'));
+
+  if (button.hasClass('btn-plus')) {
+    if (parseFloat(oldValue) < stockQuantity) {
+      var newVal = parseFloat(oldValue) + 1;
+      change = 1;
+    } else {
+      return;
+    }
+  } else {
+    if (oldValue > 1) {
+      var newVal = parseFloat(oldValue) - 1;
+      change = -1;
+    } else {
+      newVal = 1;
+    }
+  }
+
+  const input = button.parent().parent().find('input');
+  input.val(newVal);
+
+  //set form index
+  const index = input.attr("data-cart-detail-index")
+  const el = document.getElementById(`cartDetails${index}.quantity`);
+  $(el).val(newVal);
+
+
+
+  //get price
+  const price = input.attr("data-cart-detail-price");
+  const id = input.attr("data-cart-detail-id");
+
+  const priceElement = $(`p[data-cart-detail-id='${id}']`);
+  if (priceElement) {
+    const newPrice = +price * newVal;
+    priceElement.text(newPrice + " đ");
+  }
+
+  //update total cart price
+  const totalPriceElement = $(`p[data-cart-total-price]`);
+
+  if (totalPriceElement && totalPriceElement.length) {
+    const currentTotal = totalPriceElement.first().attr("data-cart-total-price");
+    let newTotal = +currentTotal;
+    if (change === 0) {
+      newTotal = +currentTotal;
+    } else {
+      newTotal = change * (+price) + (+currentTotal);
+    }
+
+    //reset change
+    change = 0;
+
+    //update
+    totalPriceElement?.each(function (index, element) {
+      //update text
+      $(totalPriceElement[index]).text(newTotal + " đ");
+
+      //update data-attribute
+      $(totalPriceElement[index]).attr("data-cart-total-price", newTotal);
+    });
+  }
+});

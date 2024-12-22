@@ -87,7 +87,7 @@
                         <!-- Form tạo mã giảm giá -->
                         <form:form method="POST" action="/admin/discount/create" modelAttribute="discount"
                             class="bg-light p-4 border rounded shadow">
-
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <div class="mb-3">
                                 <label for="code" class="form-label">Mã Giảm Giá</label>
                                 <form:input path="code" id="code" class="form-control" placeholder="Nhập mã giảm giá"
